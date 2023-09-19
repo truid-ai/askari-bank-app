@@ -6,7 +6,7 @@ import Registeration from "./screens/Registeration.js";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
-
+//test
 export default function App() {
   return (
     <NavigationContainer>
