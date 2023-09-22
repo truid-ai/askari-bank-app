@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import ModalButton from "../components/ModalButton";
 import { useState } from "react";
-const RegisterationModal = () => {
+const RegistrationModal = () => {
   const [modalVisible, setModalVisible] = useState(true);
   const preReq = ["Valid CNIC", "Active Mobile Number", "Active Email Address"];
   const toggleModal = () => {
@@ -24,7 +25,7 @@ const RegisterationModal = () => {
           Pre-requirements for starting the process
         </Text>
         <Image
-          source={require("../assets/RegisterationScreenImages/modalMobileImage.png")}
+          source={require("../assets/RegistrationScreenImages/modalMobileImage.png")}
           style={styles.modalImage}
         />
         {preReq.map((item, index) => {
@@ -37,9 +38,7 @@ const RegisterationModal = () => {
             </View>
           );
         })}
-        <TouchableOpacity onPress={toggleModal} style={styles.modalButton}>
-          <Text style={styles.modalButtonText}>Next</Text>
-        </TouchableOpacity>
+        <ModalButton Title={"Next"} Func={toggleModal} />
       </View>
     </Modal>
   );
@@ -49,11 +48,10 @@ const styles = StyleSheet.create({
     width: 342,
     height: 531,
     backgroundColor: "#FFF",
-    top: "50%",
-    left: "50%",
-    transform: [{ translateX: -175 }, { translateY: -250 }],
     alignItems: "center",
     borderRadius: 10,
+    top: 147,
+    left: 25,
   },
   modalHeading: {
     fontWeight: "600",
@@ -68,24 +66,7 @@ const styles = StyleSheet.create({
     height: 177,
     marginBottom: 15,
   },
-  modalButton: {
-    position: "absolute",
-    bottom: 0,
-    backgroundColor: "#009BDF",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 4,
-    width: 308,
-    height: 56,
-    justifyContent: "center",
-    marginBottom: 10,
-  },
-  modalButtonText: {
-    color: "white",
-    fontSize: 17,
-    fontWeight: "500",
-    textAlign: "center",
-  },
+
   modalPreReq: {
     flexDirection: "row",
     gap: 10,
@@ -111,4 +92,4 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
-export default RegisterationModal;
+export default RegistrationModal;

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-const RegisterationHeadingbar = (props) => {
+const RegistrationHeadingbar = (props) => {
   return (
     <View style={styles.detsBar}>
       <Text style={styles.detsText}>{props.Title}</Text>
@@ -9,12 +9,12 @@ const RegisterationHeadingbar = (props) => {
 const styles = StyleSheet.create({
   detsBar: {
     backgroundColor: "#EBF8FF",
-    width: 360,
+    width: 369.2,
     height: 37,
     borderRadius: 2,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 24,
+    marginTop: 20,
   },
   detsText: {
     fontWeight: "500",
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
     color: "#009BDF",
   },
 });
-export default RegisterationHeadingbar;
+export default RegistrationHeadingbar;

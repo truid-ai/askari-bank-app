@@ -2,21 +2,28 @@ import { StatusBar } from "expo-status-bar";
 import { Image, StyleSheet, Text, View, Animated } from "react-native";
 import MainScreen from "./screens/MainScreen.js";
 import OpenAccount from "./screens/OpenAccount.js";
-import Registeration from "./screens/Registeration.js";
+import Registration from "./screens/Registration.js";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import AccountTypeSelection from "./screens/AccountTypeSelection.js";
+import AccountSelection from "./screens/AccountSelection.js";
 const Stack = createStackNavigator();
 //test
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Registeration"
+        initialRouteName="AccountSelection"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="OpenAccount" component={OpenAccount} />
-        <Stack.Screen name="Registeration" component={Registeration} />
+        <Stack.Screen name="Registration" component={Registration} />
+        <Stack.Screen name="AccountSelection" component={AccountSelection} />
+        <Stack.Screen
+          name="AccountTypeSelection"
+          component={AccountTypeSelection}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
