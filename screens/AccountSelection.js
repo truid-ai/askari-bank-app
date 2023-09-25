@@ -13,14 +13,45 @@ import AccountIcon from "../assets/AccountSelection/accountIcon.png";
 import SideArrow from "../assets/AccountSelection/sideArrow.png";
 import DownArrow from "../assets/AccountSelection/downArrow.png";
 import { useState } from "react";
+import AccountFeatures from "../components/AccountFeatures";
+import Button from "../components/Button";
 const AccountSelection = () => {
   const [selectCheck, setSelectCheck] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
-  const onSelect = () => {
+  const onSelect = (index) => {
+    setSelectedItemIndex(index);
     setSelectCheck(true);
     console.log(selectCheck);
   };
   const accountTypes = [
+    {
+      Title: "Account1",
+      FeatureOne: "Feature 1",
+      FeatureTwo: "Feature 2",
+      FeatureThree: "Feature 3",
+      FeatureFour: "Feature 4",
+    },
+    {
+      Title: "Account1",
+      FeatureOne: "Feature 1",
+      FeatureTwo: "Feature 2",
+      FeatureThree: "Feature 3",
+      FeatureFour: "Feature 4",
+    },
+    {
+      Title: "Account1",
+      FeatureOne: "Feature 1",
+      FeatureTwo: "Feature 2",
+      FeatureThree: "Feature 3",
+      FeatureFour: "Feature 4",
+    },
+    {
+      Title: "Account1",
+      FeatureOne: "Feature 1",
+      FeatureTwo: "Feature 2",
+      FeatureThree: "Feature 3",
+      FeatureFour: "Feature 4",
+    },
     {
       Title: "Account1",
       FeatureOne: "Feature 1",
@@ -50,8 +81,12 @@ const AccountSelection = () => {
             return (
               <View key={index}>
                 <TouchableOpacity
-                  style={[selectCheck ? styles.selectType : styles.type]}
-                  onPress={onSelect}
+                  style={[
+                    selectedItemIndex === index
+                      ? styles.selectType
+                      : styles.type,
+                  ]}
+                  onPress={() => onSelect(index)}
                 >
                   <View style={styles.account}>
                     <Image
@@ -62,7 +97,7 @@ const AccountSelection = () => {
                       key={index}
                       style={[
                         styles.accountName,
-                        selectCheck
+                        selectedItemIndex === index
                           ? { color: "#009BDF" }
                           : { color: "#BCBCBC" },
                       ]}
@@ -72,21 +107,24 @@ const AccountSelection = () => {
                   </View>
                   <View style={styles.arrow}>
                     <Image
-                      source={selectCheck ? DownArrow : SideArrow}
+                      source={
+                        selectedItemIndex === index ? DownArrow : SideArrow
+                      }
                       style={
-                        selectCheck ? styles.downArrowImg : styles.sideArrowImg
+                        selectedItemIndex === index
+                          ? styles.downArrowImg
+                          : styles.sideArrowImg
                       }
                     />
                   </View>
                 </TouchableOpacity>
-                {selectCheck ? (
-                  <View>
-                    <Text>abcd</Text>
-                  </View>
-                ) : null}
+                {selectedItemIndex === index ? <AccountFeatures /> : null}
               </View>
             );
           })}
+        </View>
+        <View style={styles.btn}>
+          <Button Text={"Next"} />
         </View>
       </ImageBackground>
     </View>
@@ -137,7 +175,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: 10,
   },
-  accountTypes: { marginTop: 20, gap: 20 },
+  accountTypes: { marginTop: 20, gap: 10 },
   accountIcon: {
     width: 22,
     height: 22,
@@ -152,6 +190,11 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: "#BCBCBC",
     marginLeft: 12,
+  },
+  btn: {
+    position: "absolute",
+    bottom: 0,
+    marginBottom: 10,
   },
 });
 

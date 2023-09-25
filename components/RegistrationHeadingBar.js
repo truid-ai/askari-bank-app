@@ -9,7 +9,7 @@ const RegistrationHeadingbar = (props) => {
 const styles = StyleSheet.create({
   detsBar: {
     backgroundColor: "#EBF8FF",
-    width: 369.2,
+    width: 361,
     height: 37,
     borderRadius: 2,
     alignItems: "center",

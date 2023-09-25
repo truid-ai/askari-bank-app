@@ -7,13 +7,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AccountTypeSelection from "./screens/AccountTypeSelection.js";
 import AccountSelection from "./screens/AccountSelection.js";
+import Services from "./screens/Services.js";
 const Stack = createStackNavigator();
 //test
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="AccountSelection"
+        initialRouteName="AccountTypeSelection"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="MainScreen" component={MainScreen} />
@@ -24,6 +25,7 @@ export default function App() {
           name="AccountTypeSelection"
           component={AccountTypeSelection}
         />
+        <Stack.Screen name="Services" component={Services} />
       </Stack.Navigator>
     </NavigationContainer>
   );

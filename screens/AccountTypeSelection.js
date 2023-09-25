@@ -43,6 +43,7 @@ const AccountTypeSelection = () => {
                 onPress={() => {
                   onSelect(item);
                 }}
+                key={index}
               >
                 <View
                   style={[
@@ -51,9 +52,7 @@ const AccountTypeSelection = () => {
                       : styles.accountType,
                   ]}
                 >
-                  <Text key={index} style={styles.accountTypeText}>
-                    {item}
-                  </Text>
+                  <Text style={styles.accountTypeText}>{item}</Text>
                 </View>
               </TouchableOpacity>
             );

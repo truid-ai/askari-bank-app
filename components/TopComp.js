@@ -39,7 +39,7 @@ styles = StyleSheet.create({
   topBar: {
     backgroundColor: "#009BDF",
     marginTop: 52,
-    width: 369.2,
+    width: 361,
     height: 51,
     borderRadius: 4,
     flexDirection: "row",
@@ -70,8 +70,8 @@ styles = StyleSheet.create({
     marginLeft: 5,
   },
   screenBar: {
-    width: 369.2,
-    height: 14.3,
+    width: 360,
+    height: 13.9,
     marginTop: 30,
   },
   backgroundImage: {
@@ -83,7 +83,7 @@ styles = StyleSheet.create({
   },
   midBar: {
     flexDirection: "row",
-    width: 369.2,
+    width: 361,
     height: 45.4,
     backgroundColor: "#EBF8FF",
     marginTop: 26.7,
