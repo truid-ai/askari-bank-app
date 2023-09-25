@@ -32,7 +32,7 @@ const OpenAccount = () => {
           <Button
             style={styles.OpenBankAccountContainer}
             Text={"Open Bank Account"}
-            Navigate={"Registeration"}
+            Navigate={"Registration"}
           />
         </View>
         <View style={styles.ReviewContainer}>
