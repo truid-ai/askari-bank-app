@@ -34,6 +34,12 @@ export const BenefitService = ({
             uncheckedIcon="checkbox-blank-outline"
             checkedColor="#009BDF"
             size={18}
+            onPress={() => {
+              updateChecked(index);
+              if (!checkedArr[index].feature) {
+                toggleMenu(index);
+              }
+            }}
           />
           <Text
             style={[
@@ -77,12 +83,8 @@ export const BenefitService = ({
   );
 };
 const styles = StyleSheet.create({
-  benefitsList: {
-    marginTop: 20,
-    gap: 20,
-  },
   benefit: {
-    width: 361,
+    width: 360,
     height: 50,
     borderRadius: 6,
     flexDirection: "row",
@@ -115,13 +117,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#009BDF",
   },
-  backgroundImage: {
-    resizeMode: "cover",
-    width: "100%",
-    height: "100%",
-    alignItems: "center",
-    flexGrow: 1,
-  },
+
   checkBoxDiv: {
     flexDirection: "row",
     alignItems: "center",
@@ -153,12 +149,6 @@ const styles = StyleSheet.create({
     color: "#009BDF",
   },
 
-  disclaimerDiv: {
-    width: 361,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-  },
   popUp: {
     width: 360,
     height: 173,
