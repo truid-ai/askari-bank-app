@@ -1,12 +1,9 @@
 import {
-  Image,
   ImageBackground,
   StyleSheet,
-  Text,
-  KeyboardAvoidingView,
   ScrollView,
   View,
-  Dimensions,
+  Text,
 } from "react-native";
 import { useEffect, useState } from "react";
 import TextInputArea from "../components/TextInputArea.js";
@@ -15,9 +12,9 @@ import RegistrationModal from "./RegistrationModal.js";
 import RegistrationHeadingBar from "../components/RegistrationHeadingBar.js";
 import BarImage from "../assets/RegistrationScreenImages/registrationScreenBar.png";
 import OTPVerification from "../components/OTPVerification.js";
-import TopComp from "../components/TopComp.js";
-import TextComp from "../components/TextComp.js";
-
+import { TopComp } from "../components/TopComp.js";
+import { TextComp } from "../components/TextComp.js";
+import { globalStyles } from "../styles/index.js";
 const Registration = () => {
   const pattern = /^0\d{3}-\d{7}$/;
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -49,7 +46,7 @@ const Registration = () => {
             />
             <RegistrationHeadingBar Title={"Mobile Number"} />
 
-            <TextComp Heading={"Enter Mobile Number" + " *"} />
+            <Text style={globalStyles.label}>Enter Mobile Number *</Text>
 
             <TextInputArea
               Placeholder={"0xxx-xxxxxxx"}
@@ -59,10 +56,10 @@ const Registration = () => {
             />
 
             {pattern.test(phoneNumber) ? (
-              <OTPVerification Text={"Enter the OTP sent to Phone Number"} />
+              <OTPVerification text="Enter the OTP sent to Phone Number" />
             ) : null}
             <RegistrationHeadingBar Title={"Email Address"} />
-            <TextComp Heading={"Enter Email Address" + " *"} />
+            <Text style={globalStyles.label}>Enter Email Address *</Text>
             <TextInputArea
               Placeholder={"sample@gmail.com"}
               Heading={"Enter Email Address"}
@@ -70,7 +67,7 @@ const Registration = () => {
               Func={setMail}
             />
             {emailPattern.test(email) ? (
-              <OTPVerification Text={"Enter the OTP sent to Email Address"} />
+              <OTPVerification text="Enter the OTP sent to Email Address" />
             ) : null}
 
             <View style={styles.nextButton}>
@@ -83,7 +80,7 @@ const Registration = () => {
   );
 };
 export default Registration;
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column", // Vertical layout
@@ -97,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexGrow: 1,
   },
-
+  label: { textAlign: "left", width: "100%", margin: 10 },
   nextButton: {},
   innerContainer: { alignItems: "center" },
 });

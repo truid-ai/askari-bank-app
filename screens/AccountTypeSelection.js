@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   accountTypes: {
-    marginTop: 56,
+    marginTop: "10%",
+
     gap: 20,
   },
   selectedAccountType: {
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     ...Platform.select({
       ios: {
-        shadowColor: "#EBF8FF",
+        shadowColor: "#009BDF",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 4,
@@ -117,16 +118,15 @@ const styles = StyleSheet.create({
     }),
   },
   accountTypeText: {
-    width: 225,
-    height: 22.313,
-    textAlign: "center",
     color: "#009BDF",
     fontSize: 17,
     fontStyle: "normal",
     letterSpacing: 0.34,
   },
   nextBtn: {
-    marginTop: 28,
+    marginBottom: "5%",
+    position: "absolute",
+    bottom: 0,
   },
 });
 export default AccountTypeSelection;

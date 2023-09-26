@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="AccountTypeSelection"
+        initialRouteName="Services"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="MainScreen" component={MainScreen} />

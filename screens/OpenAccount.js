@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   logoImage: {
     width: 307,
     height: 85.22,
-    marginTop: 75,
+    marginTop: "15%",
   },
   computerImage: {
     width: 285,
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     lineHeight: 26.63,
     fontWeight: "700",
     marginTop: 40,
+    textAlign: "center",
   },
   paragraph: {
     fontWeight: "400",
@@ -82,10 +83,10 @@ const styles = StyleSheet.create({
     height: 78,
   },
   OpenBankAccountContainer: {
-    marginTop: 57,
+    marginTop: "15%",
   },
   ReviewContainer: {
-    marginTop: 25,
+    marginTop: "5%",
   },
   buttonText: {
     color: "white", // Set the text color to white for better contrast

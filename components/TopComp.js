@@ -1,6 +1,6 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, Platform } from "react-native";
 
-const TopComp = (props) => {
+export const TopComp = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
@@ -38,7 +38,7 @@ styles = StyleSheet.create({
   },
   topBar: {
     backgroundColor: "#009BDF",
-    marginTop: 52,
+    marginTop: "12%",
     width: 361,
     height: 51,
     borderRadius: 4,
@@ -47,16 +47,25 @@ styles = StyleSheet.create({
     alignItems: "center",
   },
   logoImage: {
-    width: 136,
+    ...Platform.select({
+      ios: {
+        width: 138,
+      },
+      android: {
+        width: 136,
+      },
+    }),
     height: 21.5,
   },
   logoContainer: {
     marginLeft: 10,
     marginRight: 10,
+    justifyContent: "center",
   },
   iconContainer: {
-    marginRight: 10, // Add some right margin to the icon (adjust as needed)
+    marginRight: "5%", // Add some right margin to the icon (adjust as needed)
     flexDirection: "row",
+    alignItems: "center",
   },
   iconImage: {
     width: 24,
@@ -71,8 +80,15 @@ styles = StyleSheet.create({
   },
   screenBar: {
     width: 360,
-    height: 13.9,
-    marginTop: 30,
+    marginTop: "6%",
+    ...Platform.select({
+      ios: {
+        height: 13.5,
+      },
+      android: {
+        height: 13.8,
+      },
+    }),
   },
   backgroundImage: {
     resizeMode: "cover",
@@ -84,9 +100,9 @@ styles = StyleSheet.create({
   midBar: {
     flexDirection: "row",
     width: 361,
-    height: 45.4,
+    height: 50,
     backgroundColor: "#EBF8FF",
-    marginTop: 26.7,
+    marginTop: "7%",
     alignItems: "center",
   },
   askariIcon: {
@@ -100,6 +116,6 @@ styles = StyleSheet.create({
     lineHeight: 18.15,
     fontSize: 15,
     marginLeft: 7,
+    width: 279,
   },
 });
-export default TopComp;
