@@ -9,7 +9,7 @@ export const TopComp = (props) => {
             source={require("../assets/RegistrationScreenImages/backArrow.png")}
             style={styles.iconImage}
           />
-          <Text style={styles.topBarText}>{props.Heading}</Text>
+          <Text style={styles.topBarText}>{props.heading}</Text>
         </View>
         <View style={styles.logoContainer}>
           <Image
@@ -19,14 +19,14 @@ export const TopComp = (props) => {
         </View>
       </View>
       <View>
-        <Image source={props.BarImage} style={styles.screenBar} />
+        <Image source={props.barImage} style={styles.screenBar} />
       </View>
       <View style={styles.midBar}>
         <Image
           source={require("../assets/RegistrationScreenImages/registrationScreenIcon.png")}
           style={styles.askariIcon}
         />
-        <Text style={styles.midBarText}>{props.SecondHeading}</Text>
+        <Text style={styles.midBarText}>{props.secondHeading}</Text>
       </View>
     </View>
   );
@@ -104,6 +104,7 @@ styles = StyleSheet.create({
     backgroundColor: "#EBF8FF",
     marginTop: "7%",
     alignItems: "center",
+    borderRadius: 3,
   },
   askariIcon: {
     width: 21,

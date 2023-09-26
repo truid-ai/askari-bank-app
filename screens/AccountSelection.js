@@ -73,9 +73,9 @@ const AccountSelection = () => {
     <View>
       <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
         <TopComp
-          Heading={"Account Selection"}
-          BarImage={BarImage}
-          SecondHeading={"Select the Account"}
+          heading={"Account Selection"}
+          barImage={BarImage}
+          secondHeading={"Select the Account"}
         />
         <View style={styles.accountTypes}>
           {console.log(accountTypes)}

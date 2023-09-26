@@ -63,9 +63,9 @@ const Services = () => {
     <View>
       <ImageBackground style={styles.backgroundImage} source={BackgroundImage}>
         <TopComp
-          Heading={"Services"}
-          BarImage={ScreenBar}
-          SecondHeading={"Debit Card and Cheque Book Selection"}
+          heading={"Services"}
+          barImage={ScreenBar}
+          secondHeading={"Debit Card and Cheque Book Selection"}
         />
         <ScrollView
           showsVerticalScrollIndicator={false}

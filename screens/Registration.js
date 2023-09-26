@@ -5,7 +5,7 @@ import {
   View,
   Text,
 } from "react-native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TextInputArea from "../components/TextInputArea.js";
 import Button from "../components/Button.js";
 import RegistrationModal from "./RegistrationModal.js";
@@ -13,7 +13,6 @@ import RegistrationHeadingBar from "../components/RegistrationHeadingBar.js";
 import BarImage from "../assets/RegistrationScreenImages/registrationScreenBar.png";
 import OTPVerification from "../components/OTPVerification.js";
 import { TopComp } from "../components/TopComp.js";
-import { TextComp } from "../components/TextComp.js";
 import { globalStyles } from "../styles/index.js";
 const Registration = () => {
   const pattern = /^0\d{3}-\d{7}$/;
@@ -40,9 +39,9 @@ const Registration = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.innerContainer}>
             <TopComp
-              Heading={"Registration"}
-              SecondHeading={"Registration"}
-              BarImage={BarImage}
+              heading={"Registration"}
+              secondHeading={"Registration"}
+              barImage={BarImage}
             />
             <RegistrationHeadingBar Title={"Mobile Number"} />
 
