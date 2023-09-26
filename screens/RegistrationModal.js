@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import ModalButton from "../components/ModalButton";
+
 import { useState } from "react";
 const RegistrationModal = () => {
   const [modalVisible, setModalVisible] = useState(true);
@@ -38,7 +38,9 @@ const RegistrationModal = () => {
             </View>
           );
         })}
-        <ModalButton Title={"Next"} Func={toggleModal} />
+        <TouchableOpacity onPress={toggleModal} style={styles.modalButton}>
+          <Text style={styles.modalButtonText}>Next</Text>
+        </TouchableOpacity>
       </View>
     </Modal>
   );
@@ -90,6 +92,24 @@ const styles = StyleSheet.create({
     color: "#009BDF",
     fontWeight: "400",
     fontSize: 12,
+  },
+  modalButton: {
+    position: "absolute",
+    bottom: 0,
+    backgroundColor: "#009BDF",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 4,
+    width: 308,
+    height: 56,
+    justifyContent: "center",
+    marginBottom: 20,
+  },
+  modalButtonText: {
+    color: "white",
+    fontSize: 17,
+    fontWeight: "500",
+    textAlign: "center",
   },
 });
 export default RegistrationModal;

@@ -7,9 +7,9 @@ import {
   View,
 } from "react-native";
 import RegistrationHeadingBar from "./RegistrationHeadingBar";
-import TextComp from "./TextComp";
 import { useEffect, useState } from "react";
 import OTPIncorrectComp from "./OTPincorrect";
+import { globalStyles } from "../styles";
 
 const OTPVerification = (props) => {
   const [totalSeconds, setTotalSeconds] = useState(120); // Initial total seconds (2 minutes)
@@ -78,21 +78,19 @@ const OTPVerification = (props) => {
         <RegistrationHeadingBar Title={"OTP Verification"} />
       </View>
       <View style={styles.otpInnerText}>
-        <View>
-          <TextComp Heading={props.Text} />
-        </View>
-        <TouchableOpacity>
+        <Text style={{ ...globalStyles.label, flex: 5 }}>{props.text}</Text>
+        <TouchableOpacity style={{ flex: 1 }}>
           <Text style={styles.touchableText}>Edit</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.verificationBoxDiv}>{OTPcode(4)}</View>
       <View style={styles.timer}>
-        <TextComp Heading={formattedTime} />
+        <Text style={globalStyles.label}>{formattedTime}</Text>
       </View>
       <View style={styles.bottomDiv}>
         <View style={styles.bottomDivText}>
           <View style={styles.resendDiv}>
-            <TextComp Heading={"Didn't receive code ? "} />
+            <Text style={globalStyles.label}>Didn't receive code ?</Text>
             <TouchableOpacity onPress={onResend} disabled={resendCheck}>
               <Text
                 style={[
@@ -149,11 +147,11 @@ const styles = StyleSheet.create({
     }),
   },
   otpInnerText: {
+    display: "flex",
     flexDirection: "row",
-
-    marginLeft: 12,
-    marginTop: 10,
-    justifyContent: "space-between",
+    // paddingHorizontal: 12,
+    marginVertical: 10,
+    justifyContent: "center",
     alignItems: "center",
   },
   touchableText: {

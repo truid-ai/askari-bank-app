@@ -2,28 +2,61 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  ScrollView,
   View,
 } from "react-native";
 import { useState } from "react";
-import { CheckBox } from "@rneui/themed";
-
-import TopComp from "../components/TopComp";
+import { globalStyles } from "../styles/index.js";
+import { TopComp } from "../components/TopComp";
 import ScreenBar from "../assets/Services/screenBar.png";
 import Icon from "react-native-vector-icons/FontAwesome";
 import BackgroundImage from "../assets/BackgroundImage/backgroundImage.png";
 import Button from "../components/Button";
+import { BenefitService } from "../components/BenefitService.js";
 const benefitsSelection = [
-  "I want Cheque Book",
-  "I want Debit Card",
-  "I want to get SMS Alerts",
+  {
+    title: "I want Cheque Book",
+    features: ["21 leaves", "60 leaves", "Text", "Text"],
+  },
+  {
+    title: "I want Debit Card",
+    features: ["21 leaves", "60 leaves", "Text", "Text"],
+  },
+  {
+    title: "I want to get SMS Alerts",
+    features: ["21 leaves", "60 leaves", "Text", "Text"],
+  },
 ];
 const Services = () => {
-  const [checked, setChecked] = useState(benefitsSelection.map(() => false));
-  const toggleCheckbox = (index) => {
-    const updatedCheckedItems = [...checked];
-    updatedCheckedItems[index] = !updatedCheckedItems[index];
-    setChecked(updatedCheckedItems);
+  const [checkedArr, setCheckedArr] = useState(
+    benefitsSelection.map(() => {
+      return { checked: false, open: false };
+    })
+  );
+  const updateChecked = (index) => {
+    const copyCheckedArr = [...checkedArr];
+    copyCheckedArr[index] = {
+      open: copyCheckedArr[index].open,
+      checked: !copyCheckedArr[index].checked,
+    };
+    setCheckedArr(copyCheckedArr);
+  };
+  const toggleMenu = (index) => {
+    const copyCheckedArr = [...checkedArr];
+    copyCheckedArr[index] = {
+      ...(!copyCheckedArr[index].checked && { checked: true }),
+      open: !copyCheckedArr[index].open,
+    };
+    setCheckedArr(copyCheckedArr);
+  };
+  const updateFeatures = (index, feature) => {
+    const copyCheckedArr = [...checkedArr];
+    copyCheckedArr[index] = {
+      ...copyCheckedArr[index],
+      feature,
+      open: false,
+    };
+    setCheckedArr(copyCheckedArr);
   };
 
   return (
@@ -34,47 +67,40 @@ const Services = () => {
           BarImage={ScreenBar}
           SecondHeading={"Debit Card and Cheque Book Selection"}
         />
-        <View style={styles.benefitsList}>
-          {benefitsSelection.map((item, index) => {
-            return (
-              <View style={styles.benefit} key={index}>
-                <View style={styles.checkBoxDiv}>
-                  <CheckBox
-                    checked={checked[index]}
-                    onPress={() => toggleCheckbox(index)} // Pass the index to toggle the specific item
-                    iconType="material-community"
-                    checkedIcon="checkbox-marked"
-                    uncheckedIcon="checkbox-blank-outline"
-                    checkedColor="#009BDF"
-                    size={18}
-                  />
-                  <Text
-                    style={[styles.text, checked[index] && styles.selectedText]}
-                  >
-                    {item}
-                  </Text>
-                </View>
-                <Icon
-                  name={checked[index] ? "angle-up" : "angle-down"}
-                  style={checked[index] ? styles.selectedIcon : styles.icon}
-                  size={30}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.ScrollView}
+        >
+          <View style={styles.benefitsList}>
+            {benefitsSelection.map((item, index) => {
+              return (
+                <BenefitService
+                  key={"benefit-selection-" + index}
+                  item={item}
+                  index={index}
+                  checkedArr={checkedArr}
+                  updateChecked={updateChecked}
+                  toggleMenu={toggleMenu}
+                  updateFeatures={updateFeatures}
                 />
-              </View>
-            );
-          })}
-          <View style={styles.disclaimerDiv}>
-            <Icon
-              name="exclamation-circle"
-              style={styles.exclamationIcon}
-              color={"#009BDF"}
-              size={14}
-            />
-            <Text style={styles.alertText}>
-              SMS alerts will cost 20 Rs Monthly
-            </Text>
+              );
+            })}
+            <View style={styles.disclaimerDiv}>
+              <Icon
+                name="exclamation-circle"
+                style={styles.exclamationIcon}
+                color={"#009BDF"}
+                size={14}
+              />
+              <Text style={styles.alertText}>
+                SMS alerts will cost 20 Rs Monthly
+              </Text>
+            </View>
           </View>
+        </ScrollView>
+        <View style={globalStyles.btn}>
+          <Button Text={"Next"} />
         </View>
-        <Button Text={"Next"} />
       </ImageBackground>
     </View>
   );
@@ -94,7 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     ...Platform.select({
       ios: {
-        shadowColor: "#EBF8FF",
+        shadowColor: "#009BDF",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 4,
@@ -151,11 +177,47 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 5,
   },
+  popUp: {
+    width: 360,
+    height: 173,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 5,
+    alignItems: "center",
+    marginTop: "3%",
+    gap: 10,
+    justifyContent: "center",
+    ...Platform.select({
+      ios: {
+        shadowColor: "#009BDF",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+      },
+      android: {
+        shadowColor: "#009BDF",
+        elevation: 5,
+        borderBottomWidth: 4, // Add a bottom border
+        borderBottomColor: "transparent", // Color of the bottom border
+      },
+    }),
+  },
+  features: {
+    width: 343,
+    gap: 5,
+    height: 23,
+  },
+  ScrollView: {
+    marginBottom: "22%",
+  },
+  separator: { width: 343, height: 1, backgroundColor: "#E8EDF1" },
   alertText: {
     fontSize: 14,
     fontWeight: "100",
     lineHeight: 20,
     color: "#009BDF",
+  },
+  featuresTitle: {
+    color: "#BCBCBC",
   },
 });
 export default Services;

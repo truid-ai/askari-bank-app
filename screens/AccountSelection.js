@@ -5,8 +5,9 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Platform,
 } from "react-native";
-import TopComp from "../components/TopComp";
+import { TopComp } from "../components/TopComp";
 import BarImage from "../assets/AccountSelection/screenBar.png";
 import BackgroundImage from "../assets/BackgroundImage/backgroundImage.png";
 import AccountIcon from "../assets/AccountSelection/accountIcon.png";
@@ -15,6 +16,7 @@ import DownArrow from "../assets/AccountSelection/downArrow.png";
 import { useState } from "react";
 import AccountFeatures from "../components/AccountFeatures";
 import Button from "../components/Button";
+import { globalStyles } from "../styles/index.js";
 const AccountSelection = () => {
   const [selectCheck, setSelectCheck] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
@@ -123,7 +125,7 @@ const AccountSelection = () => {
             );
           })}
         </View>
-        <View style={styles.btn}>
+        <View style={globalStyles.btn}>
           <Button Text={"Next"} />
         </View>
       </ImageBackground>
@@ -155,10 +157,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     backgroundColor: "#FFFFFF",
-
     ...Platform.select({
       ios: {
-        shadowColor: "#EBF8FF",
+        shadowColor: "#009BDF",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 4,
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
   btn: {
     position: "absolute",
     bottom: 0,
-    marginBottom: 10,
+    marginBottom: "5%",
   },
 });
 
