@@ -7,4 +7,11 @@ export const globalStyles = StyleSheet.create({
     bottom: 0,
     marginBottom: "5%",
   },
+  backgroundImage: {
+    resizeMode: "cover",
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    flexGrow: 1,
+  },
 });
