@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AccountTypeSelection from "./screens/AccountTypeSelection.js";
 import AccountSelection from "./screens/AccountSelection.js";
+import DocumentUploadScreen from "./screens/DocumentUploadScreen.js";
 import Services from "./screens/Services.js";
 import FATCAChecks from "./screens/FATCAChecks.js";
 const Stack = createStackNavigator();
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="FATCAChecks"
+        initialRouteName="DocumentUploadScreen"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="MainScreen" component={MainScreen} />
@@ -28,16 +29,11 @@ export default function App() {
         />
         <Stack.Screen name="Services" component={Services} />
         <Stack.Screen name="FATCAChecks" component={FATCAChecks} />
+        <Stack.Screen
+          name="DocumentUploadScreen"
+          component={DocumentUploadScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

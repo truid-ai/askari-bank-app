@@ -9,10 +9,10 @@ import { useState } from "react";
 import { globalStyles } from "../styles/index.js";
 import { TopComp } from "../components/TopComp";
 import ScreenBar from "../assets/Services/screenBar.png";
-import Icon from "react-native-vector-icons/FontAwesome";
 import BackgroundImage from "../assets/BackgroundImage/backgroundImage.png";
 import Button from "../components/Button";
 import { BenefitService } from "../components/BenefitService.js";
+import { Disclaimer } from "../components/Disclaimer.js";
 const benefitsSelection = [
   {
     title: "I want Cheque Book",
@@ -85,17 +85,11 @@ const Services = () => {
                 />
               );
             })}
-            <View style={styles.disclaimerDiv}>
-              <Icon
-                name="exclamation-circle"
-                style={styles.exclamationIcon}
-                color={"#009BDF"}
-                size={14}
-              />
-              <Text style={styles.alertText}>
-                SMS alerts will cost 20 Rs Monthly
-              </Text>
-            </View>
+            <Disclaimer
+              textColor={"#009BDF"}
+              iconColor={"#009BDF"}
+              text={"SMS alerts will cost 20 Rs Monthly"}
+            />
           </View>
         </ScrollView>
         <View style={globalStyles.btn}>
@@ -128,8 +122,13 @@ const styles = StyleSheet.create({
   },
 
   ScrollView: {
-    marginBottom: "22%",
+    marginBottom: "20.2%",
     width: "100%",
+  },
+  alertText: {
+    fontWeight: "100",
+    fontSize: 14,
+    color: "#009BDF",
   },
 });
 export default Services;
