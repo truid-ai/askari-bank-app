@@ -2,20 +2,26 @@ import { ImageBackground, StyleSheet, View, Text } from "react-native";
 import { TopComp } from "../components/TopComp";
 import ScreenBar from "../assets/FATCAChecks/screenBar.png";
 import { RadioButton } from "react-native-paper";
+import Button from "../components/Button";
 import { useState } from "react";
-import { CheckBox } from "@rneui/base";
+import { globalStyles } from "../styles";
 
 const FATCASchecks = () => {
-  const [toggleColor, setToggleColor] = useState(true);
-  const [checked, setChecked] = useState("yes");
-
-  const options = ["yes", "no"];
+  const [selectedItemIndexes, setSelectedItemIndexes] = useState({});
   const questionsArr = [
     "This is the text for question 1?",
     "This is the text for question 2?",
     "This is the text for question 3?",
     "This is the text for question 4?",
   ];
+
+  const onSelect = (index, value) => {
+    setSelectedItemIndexes({
+      ...selectedItemIndexes,
+      [index]: value,
+    });
+  };
+
   return (
     <View>
       <ImageBackground
@@ -29,38 +35,56 @@ const FATCASchecks = () => {
         />
         <View style={styles.checksContainer}>
           {questionsArr.map((item, index) => {
+            const isSelected = selectedItemIndexes[index];
+
             return (
               <View style={styles.checksDiv} key={"check" + index}>
                 <View>
                   <Text style={styles.question}>{item}</Text>
                 </View>
-                <View style={{ flexDirection: "row" }}>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View style={styles.radioButtonDiv}>
+                  <View style={styles.radioButton}>
                     <RadioButton.Android
-                      value="yes"
-                      status={checked === "yes" ? "checked" : "unchecked"}
-                      onPress={() => {
-                        setChecked("yes");
-                        setToggleColor(true);
-                      }}
-                      color={toggleColor == false ? "#D9D9D9" : "#009BDF"}
+                      value={"yes"}
+                      status={isSelected === "yes" ? "checked" : "unchecked"}
+                      onPress={() => onSelect(index, "yes")}
+                      uncheckedColor="#D9D9D9"
+                      color={"#009BDF"}
                     />
-                    <Text>Yes</Text>
+                    <Text
+                      style={{
+                        ...styles.text,
+                        color: isSelected === "yes" ? "#000000" : "#D9D9D9",
+                      }}
+                    >
+                      Yes
+                    </Text>
                   </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <View style={styles.radioButton}>
                     <RadioButton.Android
                       value="no"
-                      status={checked === "no" ? "checked" : "unchecked"}
-                      onPress={() => setChecked("no")}
-                      color={"#D9D9D9"}
+                      status={isSelected === "no" ? "checked" : "unchecked"}
+                      onPress={() => onSelect(index, "no")}
+                      uncheckedColor="#D9D9D9"
+                      color={"#009BDF"}
                     />
-                    <Text>No</Text>
+                    <Text
+                      style={{
+                        ...styles.text,
+                        color: isSelected === "no" ? "#000000" : "#D9D9D9",
+                      }}
+                    >
+                      No
+                    </Text>
                   </View>
                 </View>
                 <View style={styles.separator} />
               </View>
             );
           })}
+        </View>
+        <View style={globalStyles.btn}>
+          <Button Text={"Next"} />
         </View>
       </ImageBackground>
     </View>
@@ -89,12 +113,18 @@ const styles = StyleSheet.create({
   },
 
   radioButtonDiv: {
-    display: "flex",
     flexDirection: "row",
+    gap: 17,
   },
   separator: {
     backgroundColor: "#BCBCBC",
     width: 359,
     height: 0.7,
   },
+  radioButton: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  text: { fontWeight: "400", fontSize: 16, color: "#000000" },
 });
