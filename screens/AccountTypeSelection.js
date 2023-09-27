@@ -28,9 +28,9 @@ const AccountTypeSelection = () => {
         style={styles.backgroundImage}
       >
         <TopComp
-          Heading={"Account Type "}
-          BarImage={BarImage}
-          SecondHeading={"Account Type Selection"}
+          heading={"Account Type "}
+          barImage={BarImage}
+          secondHeading={"Account Type Selection"}
         />
         <Image
           source={require("../assets/AccountTypeSelection/mobileImage.png")}

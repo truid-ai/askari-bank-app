@@ -8,13 +8,14 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AccountTypeSelection from "./screens/AccountTypeSelection.js";
 import AccountSelection from "./screens/AccountSelection.js";
 import Services from "./screens/Services.js";
+import FATCAChecks from "./screens/FATCAChecks.js";
 const Stack = createStackNavigator();
 //test
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Services"
+        initialRouteName="FATCAChecks"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="MainScreen" component={MainScreen} />
@@ -26,6 +27,7 @@ export default function App() {
           component={AccountTypeSelection}
         />
         <Stack.Screen name="Services" component={Services} />
+        <Stack.Screen name="FATCAChecks" component={FATCAChecks} />
       </Stack.Navigator>
     </NavigationContainer>
   );
