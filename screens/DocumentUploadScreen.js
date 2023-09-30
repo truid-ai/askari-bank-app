@@ -16,7 +16,6 @@ import Button from "../components/Button";
 
 import { useState } from "react";
 import { Disclaimer } from "../components/Disclaimer";
-import { color } from "@rneui/base";
 const DocumentUploadScreen = () => {
   const [selectedItemIndexes, setSelectedItemIndexes] = useState({
     0: false,

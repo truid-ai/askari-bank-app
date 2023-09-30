@@ -10,13 +10,18 @@ import AccountSelection from "./screens/AccountSelection.js";
 import DocumentUploadScreen from "./screens/DocumentUploadScreen.js";
 import Services from "./screens/Services.js";
 import FATCAChecks from "./screens/FATCAChecks.js";
+import BranchSelection from "./screens/BranchSelection.js";
+import TermsAndConditions from "./screens/TermsAndConditions.js";
+import ConfirmMotherName from "./screens/ConfirmationMotherName.js";
+import ConfirmBirthPlace from "./screens/ConfirmationBirthPlace.js";
+import InformationReview from "./screens/InformationReview.js";
 const Stack = createStackNavigator();
-//test
+
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="DocumentUploadScreen"
+        initialRouteName="InformationReview"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="MainScreen" component={MainScreen} />
@@ -33,6 +38,14 @@ export default function App() {
           name="DocumentUploadScreen"
           component={DocumentUploadScreen}
         />
+        <Stack.Screen name="BranchSelection" component={BranchSelection} />
+        <Stack.Screen
+          name="TermsAndConditions"
+          component={TermsAndConditions}
+        />
+        <Stack.Screen name="ConfirmMotherName" component={ConfirmMotherName} />
+        <Stack.Screen name="ConfirmBirthPlace" component={ConfirmBirthPlace} />
+        <Stack.Screen name="InformationReview" component={InformationReview} />
       </Stack.Navigator>
     </NavigationContainer>
   );
