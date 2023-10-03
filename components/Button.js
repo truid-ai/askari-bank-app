@@ -5,13 +5,35 @@ const Button = (props) => {
 
   return (
     <View>
+      {console.log(props)}
       <TouchableOpacity
-        style={styles.button}
+        style={
+          props.type === "ModalBtn"
+            ? styles.modalButton
+            : props.type === "ModalBtnSecond"
+            ? styles.modalButtonSecond
+            : styles.button
+        }
         onPress={() => {
-          props.Navigate ? navigation.navigate(props.Navigate) : null;
+          console.log("here");
+          props.func();
+          // props.Navigate
+          //   ? navigation.navigate(props.Navigate)
+          //   : props.func
+          //   ? props.func
+          //   : null;
         }}
       >
-        <Text style={styles.buttonText}>{props.Text}</Text>
+        <Text
+          style={[
+            props.type === "ModalBtnSecond"
+              ? { color: "#009BDF" }
+              : { color: "white" },
+            styles.buttonText,
+          ]}
+        >
+          {props.Text}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -27,11 +49,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 10,
   },
+  modalButton: {
+    width: 308,
+    height: 46,
+    borderRadius: 5,
+    backgroundColor: "#009BDF",
+    justifyContent: "center",
+  },
   buttonText: {
-    color: "white",
     fontSize: 17,
     fontWeight: "500",
     textAlign: "center",
+  },
+
+  modalButtonSecond: {
+    width: 308,
+    height: 46,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#009BDF",
+    justifyContent: "center",
   },
 });
 export default Button;

@@ -15,13 +15,14 @@ import TermsAndConditions from "./screens/TermsAndConditions.js";
 import ConfirmMotherName from "./screens/ConfirmationMotherName.js";
 import ConfirmBirthPlace from "./screens/ConfirmationBirthPlace.js";
 import InformationReview from "./screens/InformationReview.js";
+import EmployeeBanking from "./screens/EmployeeBanking.js";
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="InformationReview"
+        initialRouteName="Registration"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="MainScreen" component={MainScreen} />
@@ -46,6 +47,7 @@ export default function App() {
         <Stack.Screen name="ConfirmMotherName" component={ConfirmMotherName} />
         <Stack.Screen name="ConfirmBirthPlace" component={ConfirmBirthPlace} />
         <Stack.Screen name="InformationReview" component={InformationReview} />
+        <Stack.Screen name="EmployeeBanking" component={EmployeeBanking} />
       </Stack.Navigator>
     </NavigationContainer>
   );

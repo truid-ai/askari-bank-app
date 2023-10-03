@@ -55,7 +55,15 @@ const OTPVerification = (props) => {
 
     for (let i = 0; i < count; i++) {
       components.push(
-        <View key={i} style={styles.verificationBox}>
+        <View
+          key={i}
+          style={[
+            props.type == "EmployeeBanking"
+              ? { width: 61, height: 53 }
+              : { width: 76, height: 66 },
+            styles.verificationBox,
+          ]}
+        >
           <TextInput style={styles.OTPcode} keyboardType="numeric" />
         </View>
       );
@@ -66,43 +74,40 @@ const OTPVerification = (props) => {
 
   return (
     <View style={styles.otpContainer}>
-      <Modal
-        animationType="slide" // You can change the animation type as needed
-        transparent={true}
-        visible={OTPincorrect}
-      >
-        <OTPIncorrectComp Func={toggleModal} />
-      </Modal>
-
       <View style={styles.otpTitleBar}>
         <RegistrationHeadingBar Title={"OTP Verification"} />
       </View>
       <View style={styles.otpInnerText}>
-        <Text style={{ ...globalStyles.label, flex: 5 }}>{props.text}</Text>
-        <TouchableOpacity style={{ flex: 1 }}>
+        <Text style={styles.otpLabel}>{props.text}</Text>
+        <TouchableOpacity>
           <Text style={styles.touchableText}>Edit</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.verificationBoxDiv}>{OTPcode(4)}</View>
+      <View style={[styles.verificationBoxDiv]}>{OTPcode(4)}</View>
       <View style={styles.timer}>
-        <Text style={globalStyles.label}>{formattedTime}</Text>
+        <Text>{formattedTime}</Text>
       </View>
       <View style={styles.bottomDiv}>
-        <View style={styles.bottomDivText}>
-          <View style={styles.resendDiv}>
-            <Text style={globalStyles.label}>Didn't receive code ?</Text>
-            <TouchableOpacity onPress={onResend} disabled={resendCheck}>
-              <Text
-                style={[
-                  styles.touchableText,
-                  resendCheck ? { color: "#BCBCBC" } : { color: "#009BDF" },
-                ]}
-              >
-                Re-send
-              </Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.resendDiv}>
+          <Text style={[globalStyles.label, { flex: 3 }]}>
+            Didn't receive code ?
+          </Text>
+          <TouchableOpacity
+            style={{ flex: 2 }}
+            onPress={onResend}
+            disabled={resendCheck}
+          >
+            <Text
+              style={[
+                styles.touchableText,
+                resendCheck ? { color: "#BCBCBC" } : { color: "#009BDF" },
+              ]}
+            >
+              Re-send
+            </Text>
+          </TouchableOpacity>
         </View>
+
         <View style={styles.verifyBtn}>
           <TouchableOpacity>
             <Text
@@ -116,6 +121,13 @@ const OTPVerification = (props) => {
           </TouchableOpacity>
         </View>
       </View>
+      <Modal
+        animationType="slide" // You can change the animation type as needed
+        transparent={true}
+        visible={OTPincorrect}
+      >
+        <OTPIncorrectComp Func={toggleModal} />
+      </Modal>
     </View>
   );
 };
@@ -125,12 +137,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  otpLabel: {
+    fontSize: 12,
+    color: "#697d95",
+  },
   otpContainer: {
-    width: 385,
-    height: 263,
     borderRadius: 8,
     backgroundColor: "#FFFFFF",
     marginTop: 8,
+    gap: 10,
+    alignItems: "center",
+    maxWidth: "100%",
+    width: "100%",
+    marginBottom: 50,
     ...Platform.select({
       ios: {
         shadowColor: "#EBF8FF",
@@ -147,26 +166,17 @@ const styles = StyleSheet.create({
     }),
   },
   otpInnerText: {
-    display: "flex",
     flexDirection: "row",
-    // paddingHorizontal: 12,
-    marginVertical: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
   },
   touchableText: {
-    fontWeight: "500",
     color: "#009BDF",
-    fontSize: 13,
-    lineHeight: 15.3,
-    marginTop: 2.5,
-    marginRight: 13.5,
+    fontSize: 12,
   },
   verificationBox: {
     borderColor: "#009BDF",
     borderWidth: 1,
-    width: 76,
-    height: 66,
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -180,23 +190,19 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   verificationBoxDiv: {
-    marginLeft: 12,
-    marginTop: 18,
-    gap: 18.3,
     flexDirection: "row",
+    gap: "15%",
   },
   timer: {
-    marginLeft: 12,
-    marginTop: 10,
+    display: "flex",
+    width: "100%",
+    textAlign: "left",
   },
   bottomDiv: {
-    marginLeft: 12,
-    marginBottom: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 20,
-    marginRight: 13.5,
+    width: "100%",
   },
   bottomDivText: {
     flexDirection: "row",
@@ -204,7 +210,7 @@ const styles = StyleSheet.create({
   verifyBtn: {
     backgroundColor: "#009BDF",
     borderRadius: 5,
-    width: 129,
+    width: 100,
     height: 38,
     justifyContent: "center",
   },
@@ -214,8 +220,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     textAlign: "center",
   },
-  resendDiv: {
-    flexDirection: "row",
-  },
+  resendDiv: {},
+  label: { fontWeight: "500", fontSize: 12, color: "#697D95" },
 });
 export default OTPVerification;
