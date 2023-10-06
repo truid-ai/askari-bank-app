@@ -20,78 +20,90 @@ const RegistrationModal = () => {
       transparent={true}
       visible={modalVisible}
     >
-      <View style={styles.modal}>
-        <Text style={styles.modalHeading}>
-          Pre-requirements for starting the process
-        </Text>
-        <Image
-          source={require("../assets/RegistrationScreenImages/modalMobileImage.png")}
-          style={styles.modalImage}
-        />
-        {preReq.map((item, index) => {
-          return (
-            <View style={styles.modalPreReq} key={index}>
-              <View style={styles.modalIndex}>
-                <Text style={styles.modalIndexNum}>{index + 1}</Text>
+      <View style={styles.modalContainer}>
+        <View style={styles.modal}>
+          <Text style={styles.modalHeading}>
+            Pre-requirements for starting the process
+          </Text>
+          <Image
+            source={require("../assets/RegistrationScreenImages/modalMobileImage.png")}
+            style={styles.modalImage}
+          />
+          {preReq.map((item, index) => {
+            return (
+              <View style={styles.modalPreReq} key={index}>
+                <View style={styles.modalIndex}>
+                  <Text style={styles.modalIndexNum}>{index + 1}</Text>
+                </View>
+                <Text style={styles.modalText}>{item}</Text>
               </View>
-              <Text style={styles.modalText}>{item}</Text>
-            </View>
-          );
-        })}
-        <TouchableOpacity onPress={toggleModal} style={styles.modalButton}>
-          <Text style={styles.modalButtonText}>Next</Text>
-        </TouchableOpacity>
+            );
+          })}
+          <TouchableOpacity onPress={toggleModal} style={styles.modalButton}>
+            <Text style={styles.modalButtonText}>Next</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </Modal>
   );
 };
 const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
   modal: {
     width: 342,
     height: 531,
     backgroundColor: "#FFF",
     alignItems: "center",
     borderRadius: 10,
-    top: 147,
-    left: 25,
+    alignItems: "center",
   },
   modalHeading: {
     fontWeight: "600",
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
-    width: 314,
     lineHeight: 24.2,
-    padding: 17,
+    paddingBottom: 17,
+    marginLeft: 0.5,
+    marginRight: 0.5,
+    marginTop: 15,
   },
   modalImage: {
     width: 177,
     height: 177,
-    marginBottom: 15,
+    marginBottom: 19,
+    marginTop: 5,
   },
 
   modalPreReq: {
     flexDirection: "row",
     gap: 10,
     width: 314,
-    padding: 15,
+    paddingLeft: 15,
+    paddingBottom: 15,
+    paddingTop: 10,
     alignItems: "center",
   },
   modalIndex: {
     backgroundColor: "#EBF8FF",
     borderRadius: 70,
-    width: 26,
-    height: 26,
+    width: 22,
+    height: 22,
     alignItems: "center",
     justifyContent: "center",
   },
   modalIndexNum: {
-    fontSize: 16,
+    fontSize: 11,
     color: "#009BDF",
   },
   modalText: {
     color: "#009BDF",
     fontWeight: "400",
-    fontSize: 12,
+    fontSize: 11,
   },
   modalButton: {
     position: "absolute",
@@ -107,7 +119,7 @@ const styles = StyleSheet.create({
   },
   modalButtonText: {
     color: "white",
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: "500",
     textAlign: "center",
   },

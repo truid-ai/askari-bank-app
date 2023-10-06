@@ -49,68 +49,64 @@ const DocumentUploadScreen = () => {
       />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: "20.2%", width: "100%" }}
+        contentContainerStyle={styles.uploadDocumentsDiv}
       >
-        <View style={[styles.uploadDocumentsDiv]}>
-          {docsArr.map((item, index) => {
-            const isSelected = selectedItemIndexes[index];
-            return (
-              <View key={"upload" + index} style={styles.uploadDocInnerDiv}>
-                <View style={styles.textDiv}>
-                  <Text style={styles.text}>{item}</Text>
-                </View>
-                <View>
-                  <TouchableOpacity
-                    style={[
-                      styles.uploadDoc,
-                      isSelected == true
-                        ? { borderColor: "#D21C1C", borderWidth: 1 }
-                        : null,
-                    ]}
-                    onPress={() => onSelect(index)}
-                  >
-                    <View style={styles.clipIcon}>
-                      <Icon
-                        name="paperclip"
-                        size={20}
-                        color={isSelected == true ? "#000000" : "#697D95"}
-                        style={{
-                          marginLeft: 10,
-                          marginRight: "2%",
-                          marginTop: "18%",
-                          transform: [{ rotate: "90 deg" }],
-                        }}
-                      />
-                    </View>
-                    <View style={styles.innerTextDiv}>
-                      <Text
-                        style={
-                          isSelected == true
-                            ? { color: "#000000" }
-                            : { color: "#697D95" }
-                        }
-                      >
-                        {isSelected == true
-                          ? "Sample_DOC.pdf"
-                          : "Add attachment"}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-
-                {isSelected == true ? (
-                  <View>
-                    <Disclaimer
-                      iconColor={"#D21C1C"}
-                      textColor={"#D21C1C"}
-                      text={"Document should not exceed 20 MB"}
+        {docsArr.map((item, index) => {
+          const isSelected = selectedItemIndexes[index];
+          return (
+            <View key={"upload" + index} style={styles.uploadDocInnerDiv}>
+              <View style={styles.textDiv}>
+                <Text style={styles.text}>{item}</Text>
+              </View>
+              <View>
+                <TouchableOpacity
+                  style={[
+                    styles.uploadDoc,
+                    isSelected == true
+                      ? { borderColor: "#D21C1C", borderWidth: 1 }
+                      : null,
+                  ]}
+                  onPress={() => onSelect(index)}
+                >
+                  <View style={styles.clipIcon}>
+                    <Icon
+                      name="paperclip"
+                      size={20}
+                      color={isSelected == true ? "#000000" : "#697D95"}
+                      style={{
+                        marginLeft: 10,
+                        marginRight: "2%",
+                        marginTop: "18%",
+                        transform: [{ rotate: "90 deg" }],
+                      }}
                     />
                   </View>
-                ) : null}
+                  <View style={styles.innerTextDiv}>
+                    <Text
+                      style={
+                        isSelected == true
+                          ? { color: "#000000" }
+                          : { color: "#697D95" }
+                      }
+                    >
+                      {isSelected == true ? "Sample_DOC.pdf" : "Add attachment"}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               </View>
-            );
-          })}
-        </View>
+
+              {isSelected == true ? (
+                <View>
+                  <Disclaimer
+                    iconColor={"#D21C1C"}
+                    textColor={"#D21C1C"}
+                    text={"Document should not exceed 20 MB"}
+                  />
+                </View>
+              ) : null}
+            </View>
+          );
+        })}
       </ScrollView>
       <View style={globalStyles.btn}>
         <Button Text={"Next"} />
@@ -131,6 +127,7 @@ const styles = StyleSheet.create({
     gap: 27,
     marginTop: 20,
     alignItems: "center",
+    paddingBottom: 150,
   },
   uploadDocInnerDiv: { gap: 7 },
   uploadDoc: {

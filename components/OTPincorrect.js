@@ -1,6 +1,15 @@
-import { Modal, View, Text, StyleSheet, Image } from "react-native";
+import {
+  Modal,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import OTPIncorrectGif from "../assets/RegistrationScreenImages/OTPincorrect/otpIncorrectGif.gif";
-import ModalButton from "./ModalButton";
+
+import Button from "./Button";
+import { globalStyles } from "../styles";
 
 const OTPincorrect = (props) => {
   return (
@@ -9,35 +18,52 @@ const OTPincorrect = (props) => {
       <View style={styles.textLayout}>
         <Text style={styles.OTPtext}>OTP is incorrect, Please try again.</Text>
       </View>
-
-      <ModalButton style={styles.btn} Title={"Try Again"} Func={props.Func} />
+      <View style={globalStyles.btn}>
+        <Button Text={"TRY AGAIN"} type={"ModalBtn"} func={props.func} />
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
     width: 342,
-    height: 382,
+    height: 400,
     backgroundColor: "#FFFFFF",
     borderRadius: 10,
     alignItems: "center",
-    top: 241,
-    left: 19,
   },
   gif: {
     width: 174,
     height: 214,
     marginTop: 18,
+    marginBottom: 10,
   },
   OTPtext: {
     fontWeight: "400",
-    fontSize: 18.8,
+    fontSize: 17,
     lineHeight: 21.78,
     textAlign: "center",
   },
   textLayout: {
     width: 276,
-    height: 44,
+  },
+  btn: {
+    position: "absolute",
+    bottom: 0,
+    backgroundColor: "#009BDF",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 4,
+    width: 308,
+    height: 56,
+    justifyContent: "center",
+    marginBottom: 20,
+  },
+  btnText: {
+    color: "white",
+    fontSize: 15,
+    fontWeight: "500",
+    textAlign: "center",
   },
 });
 export default OTPincorrect;

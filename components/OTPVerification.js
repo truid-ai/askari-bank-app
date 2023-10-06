@@ -5,12 +5,14 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Dimensions,
 } from "react-native";
 import RegistrationHeadingBar from "./RegistrationHeadingBar";
 import { useEffect, useState } from "react";
 import OTPIncorrectComp from "./OTPincorrect";
 import { globalStyles } from "../styles";
 
+const screenWidth = Dimensions.get("window").width;
 const OTPVerification = (props) => {
   const [totalSeconds, setTotalSeconds] = useState(120); // Initial total seconds (2 minutes)
   const [formattedTime, setFormattedTime] = useState("00:00");
@@ -126,7 +128,9 @@ const OTPVerification = (props) => {
         transparent={true}
         visible={OTPincorrect}
       >
-        <OTPIncorrectComp Func={toggleModal} />
+        <View style={styles.modalContainer}>
+          <OTPIncorrectComp func={toggleModal} />
+        </View>
       </Modal>
     </View>
   );
@@ -147,23 +151,23 @@ const styles = StyleSheet.create({
     marginTop: 8,
     gap: 10,
     alignItems: "center",
-    maxWidth: "100%",
-    width: "100%",
+    // maxWidth: "100%",
+    // width: screenWidth * 0.9,
     marginBottom: 50,
-    ...Platform.select({
-      ios: {
-        shadowColor: "#EBF8FF",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-      },
-      android: {
-        shadowColor: "#009BDF",
-        elevation: 8,
-        borderBottomWidth: 4, // Add a bottom border
-        borderBottomColor: "transparent", // Color of the bottom border
-      },
-    }),
+    // ...Platform.select({
+    //   ios: {
+    //     shadowColor: "#EBF8FF",
+    //     shadowOffset: { width: 0, height: 2 },
+    //     shadowOpacity: 0.3,
+    //     shadowRadius: 4,
+    //   },
+    //   android: {
+    //     shadowColor: "#009BDF",
+    //     elevation: 8,
+    //     borderBottomWidth: 4, // Add a bottom border
+    //     borderBottomColor: "transparent", // Color of the bottom border
+    //   },
+    // }),
   },
   otpInnerText: {
     flexDirection: "row",
@@ -191,7 +195,7 @@ const styles = StyleSheet.create({
   },
   verificationBoxDiv: {
     flexDirection: "row",
-    gap: "15%",
+    gap: 15,
   },
   timer: {
     display: "flex",
@@ -220,7 +224,12 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     textAlign: "center",
   },
-  resendDiv: {},
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
   label: { fontWeight: "500", fontSize: 12, color: "#697D95" },
 });
 export default OTPVerification;

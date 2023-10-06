@@ -6,10 +6,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import TopComp from "../components/TopComp";
+import { TopComp } from "../components/TopComp";
 import BarImage from "../assets/AccountTypeSelection/screenBar.png";
 import { useState } from "react";
 import Button from "../components/Button";
+import { globalStyles } from "../styles";
 
 const AccountTypeSelection = () => {
   const accountTypes = ["Islamic", "Conventional", "Employee Banking"];
@@ -58,7 +59,7 @@ const AccountTypeSelection = () => {
             );
           })}
         </View>
-        <View style={styles.nextBtn}>
+        <View style={globalStyles.btn}>
           <Button Text={"Next"} Navigate={"AccountSelection"} />
         </View>
       </ImageBackground>

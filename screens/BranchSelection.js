@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import BackgroundImage from "../assets/BackgroundImage/backgroundImage.png";
 import screenBar from "../assets/BranchSelection/screenBar.png";
@@ -13,6 +14,7 @@ import { TopComp } from "../components/TopComp";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useState } from "react";
 import Button from "../components/Button";
+const screenWidth = Dimensions.get("window").width;
 
 const BranchSelection = () => {
   const [checked, setChecked] = useState({
@@ -28,7 +30,7 @@ const BranchSelection = () => {
     {
       title: "Select your branch",
       Det: "Branch",
-      branches: ["Text", "Text", "Text", "Text"],
+      branches: ["Text", "Text", "Text"],
     },
   ];
   const onSelect = (index) => {
@@ -50,49 +52,49 @@ const BranchSelection = () => {
       />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: "20.2%", width: "100%" }}
+        scrollEnabled={false}
+        contentContainerStyle={styles.lowerComp}
       >
-        <View style={styles.lowerComp}>
-          {arr.map((item, index) => {
-            return (
-              <View key={"item" + index}>
-                <View style={styles.branchDiv}>
-                  <View style={styles.textDiv}>
-                    <Text style={styles.text}>{item.title}</Text>
-                  </View>
-                  <TouchableOpacity
-                    style={styles.detsDiv}
-                    onPress={() => {
-                      onSelect(index);
-                    }}
-                  >
-                    <View style={styles.cityText}>
-                      <Text>{item.Det}</Text>
-                    </View>
-                    <View style={styles.iconDiv}>
-                      <Icon
-                        name={
-                          checked[index] == true ? "angle-down" : "angle-up"
-                        }
-                        size={20}
-                      />
-                    </View>
-                  </TouchableOpacity>
+        {arr.map((item, index) => {
+          return (
+            <View key={"item" + index} style={styles.selectWrapper}>
+              <View style={styles.branchDiv}>
+                <View style={styles.textDiv}>
+                  <Text style={styles.text}>{item.title}</Text>
                 </View>
+                <TouchableOpacity
+                  style={styles.detsDiv}
+                  onPress={() => {
+                    onSelect(index);
+                  }}
+                >
+                  <View style={styles.cityText}>
+                    <Text>{item.Det}</Text>
+                  </View>
+                  <View style={styles.iconDiv}>
+                    <Icon
+                      name={checked[index] == true ? "angle-up" : "angle-down"}
+                      size={20}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </View>
 
-                {checked[index] == true ? (
-                  <View style={styles.branchNamesDiv}>
-                    <View>
-                      <View style={styles.search}>
-                        <Icon
-                          name={"search"}
-                          size={15}
-                          color={"#BCBCBC"}
-                          style={styles.icon}
-                        />
-                        <Text style={styles.searchText}>Search</Text>
-                      </View>
-
+              {checked[index] == true ? (
+                <View style={styles.branchNamesDiv}>
+                  <View>
+                    <View style={styles.search}>
+                      <Icon
+                        name={"search"}
+                        size={15}
+                        color={"#BCBCBC"}
+                        style={styles.icon}
+                      />
+                      <Text style={styles.searchText}>Search</Text>
+                    </View>
+                    <ScrollView
+                      contentContainerStyle={styles.branchesContainer}
+                    >
                       {item.branches.map((item, index) => {
                         return (
                           <View
@@ -100,17 +102,16 @@ const BranchSelection = () => {
                             key={"branches" + index}
                           >
                             <Text style={styles.branchText}>{item}</Text>
-                            <View style={styles.separator} />
                           </View>
                         );
                       })}
-                    </View>
+                    </ScrollView>
                   </View>
-                ) : null}
-              </View>
-            );
-          })}
-        </View>
+                </View>
+              ) : null}
+            </View>
+          );
+        })}
       </ScrollView>
       <View style={globalStyles.btn}>
         <Button Text={"Next"} />
@@ -123,10 +124,19 @@ const styles = StyleSheet.create({
     gap: 25,
     marginTop: 25,
     alignItems: "center",
+    paddingBottom: 150,
+  },
+  selectWrapper: {
+    width: screenWidth,
+    alignItems: "center",
+  },
+  branchesContainer: {
+    width: screenWidth * 0.95,
+    height: 150,
+    overflow: "scroll",
   },
   branchDiv: {
-    width: 360,
-    height: 85,
+    width: screenWidth * 0.95,
     borderRadius: 6,
     backgroundColor: "#FFFFFF",
 
@@ -167,8 +177,7 @@ const styles = StyleSheet.create({
     paddingRight: "4%",
   },
   branchNamesDiv: {
-    width: 360,
-    height: 192,
+    width: screenWidth * 0.95,
     backgroundColor: "#FFFFFF",
     borderRadius: 5,
 
@@ -192,17 +201,28 @@ const styles = StyleSheet.create({
   },
   search: {
     flexDirection: "row",
+    alignItems: "center",
     gap: 10,
     padding: 10,
   },
-  branches: { width: 360, alignItems: "center", gap: 10 },
+  branches: {
+    width: screenWidth * 0.95,
+    alignItems: "center",
+    gap: 10,
+  },
 
   searchText: {
     color: "#BCBCBC",
     fontWeight: "400",
     fontSize: 13,
   },
-  branchText: { width: 343, color: "#BCBCBC" },
+  branchText: {
+    width: 343,
+    color: "#BCBCBC",
+    padding: 10,
+    borderBottomColor: "#BCBCBC",
+    borderBottomWidth: 1,
+  },
   separator: {
     width: 343,
     height: 1,

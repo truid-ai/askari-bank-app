@@ -4,6 +4,7 @@ import {
   ScrollView,
   View,
   Text,
+  Dimensions,
 } from "react-native";
 import { useState } from "react";
 import TextInputArea from "../components/TextInputArea.js";
@@ -14,6 +15,8 @@ import BarImage from "../assets/RegistrationScreenImages/registrationScreenBar.p
 import OTPVerification from "../components/OTPVerification.js";
 import { TopComp } from "../components/TopComp.js";
 import { globalStyles } from "../styles/index.js";
+
+const screenWidth = Dimensions.get("window").width;
 const Registration = () => {
   const pattern = /^0\d{3}-\d{7}$/;
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -36,13 +39,16 @@ const Registration = () => {
         source={require("../assets/BackgroundImage/backgroundImage.png")}
         style={styles.backgroundImage}
       >
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.innerContainer}>
-            <TopComp
-              heading={"Registration"}
-              secondHeading={"Registration"}
-              barImage={BarImage}
-            />
+        <ScrollView
+          contentContainerStyle={styles.innerContainer}
+          showsVerticalScrollIndicator={false}
+        >
+          <TopComp
+            heading={"Registration"}
+            secondHeading={"Registration"}
+            barImage={BarImage}
+          />
+          <View>
             <RegistrationHeadingBar Title={"Mobile Number"} />
 
             <Text style={globalStyles.label}>Enter Mobile Number *</Text>
@@ -55,8 +61,12 @@ const Registration = () => {
             />
 
             {pattern.test(phoneNumber) ? (
-              <OTPVerification text="Enter the OTP sent to Phone Number" />
+              <View style={styles.OTPVerificationContainer}>
+                <OTPVerification text="Enter the OTP sent to Phone Number" />
+              </View>
             ) : null}
+          </View>
+          <View>
             <RegistrationHeadingBar Title={"Email Address"} />
             <Text style={globalStyles.label}>Enter Email Address *</Text>
             <TextInputArea
@@ -65,13 +75,15 @@ const Registration = () => {
               Keyboard={"email-address"}
               Func={setMail}
             />
-            {emailPattern.test(email) ? (
-              <OTPVerification text="Enter the OTP sent to Email Address" />
-            ) : null}
 
-            <View style={styles.nextButton}>
-              <Button Text={"Next"} />
-            </View>
+            {emailPattern.test(email) ? (
+              <View style={styles.OTPVerificationContainer}>
+                <OTPVerification text="Enter the OTP sent to Email Address" />
+              </View>
+            ) : null}
+          </View>
+          <View style={styles.nextButton}>
+            <Button Text={"Next"} />
           </View>
         </ScrollView>
       </ImageBackground>
@@ -84,6 +96,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column", // Vertical layout
     justifyContent: "space-between",
+    paddingHorizontal: 5,
   },
 
   backgroundImage: {
@@ -93,7 +106,10 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     flexGrow: 1,
   },
+  OTPVerificationContainer: {
+    width: screenWidth * 0.95,
+  },
   label: { textAlign: "left", width: "100%", margin: 10 },
-  nextButton: {},
-  innerContainer: { alignItems: "center" },
+  nextButton: { position: "absolute", bottom: 14, width: "100%" },
+  innerContainer: { paddingBottom: 100, flexGrow: 1, width: "95%" },
 });

@@ -5,7 +5,7 @@ const Button = (props) => {
 
   return (
     <View>
-      {console.log(props)}
+      {/* {console.log(props)} */}
       <TouchableOpacity
         style={
           props.type === "ModalBtn"
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 4,
-    width: 360,
     height: 56,
     justifyContent: "center",
     marginTop: 10,

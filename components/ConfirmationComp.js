@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import separator from "../assets/InformationReview/separator.png";
+const screenWidth = Dimensions.get("window").width;
+
 const ConfirmationComp = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
@@ -93,7 +101,7 @@ const ConfirmationComp = (props) => {
 };
 const styles = StyleSheet.create({
   circleContainer: {
-    width: 360,
+    width: screenWidth * 0.95,
     height: 51,
     backgroundColor: "#FFFFFF",
     borderRadius: 2,
@@ -116,7 +124,7 @@ const styles = StyleSheet.create({
     }),
   },
   squareContainer: {
-    width: 360,
+    width: screenWidth * 0.95,
     height: 51,
     backgroundColor: "#FFFFFF",
     borderRadius: 2,
@@ -152,7 +160,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     color: "#252A31",
     fontSize: 14,
-    fontWeight: 500,
+    fontWeight: "bold",
   },
   circleSelectedContainer: {
     borderWidth: 1,
@@ -177,7 +185,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   selectedSquare: {
-    width: 360,
+    width: screenWidth * 0.95,
     height: 98,
     backgroundColor: "#FFFFFF",
     alignItems: "center",

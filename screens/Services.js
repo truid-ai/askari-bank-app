@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   View,
+  Dimensions,
 } from "react-native";
 import { useState } from "react";
 import { globalStyles } from "../styles/index.js";
@@ -13,6 +14,8 @@ import BackgroundImage from "../assets/BackgroundImage/backgroundImage.png";
 import Button from "../components/Button";
 import { BenefitService } from "../components/BenefitService.js";
 import { Disclaimer } from "../components/Disclaimer.js";
+const screenWidth = Dimensions.get("window").width;
+
 const benefitsSelection = [
   {
     title: "I want Cheque Book",
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
   },
 
   disclaimerDiv: {
-    width: 361,
+    width: screenWidth * 0.95,
     flexDirection: "row",
     alignItems: "center",
     gap: 5,

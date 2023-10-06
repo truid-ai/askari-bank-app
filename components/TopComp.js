@@ -1,4 +1,12 @@
-import { Image, StyleSheet, Text, View, Platform } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Platform,
+  Dimensions,
+} from "react-native";
+const screenWidth = Dimensions.get("window").width;
 
 export const TopComp = (props) => {
   return (
@@ -18,7 +26,7 @@ export const TopComp = (props) => {
           />
         </View>
       </View>
-      <View>
+      <View style={styles.screenBarContainer}>
         <Image source={props.barImage} style={styles.screenBar} />
       </View>
       <View style={styles.midBar}>
@@ -39,7 +47,7 @@ styles = StyleSheet.create({
   topBar: {
     backgroundColor: "#009BDF",
     marginTop: "12%",
-    width: 361,
+    alignSelf: "stretch",
     height: 51,
     borderRadius: 4,
     flexDirection: "row",
@@ -78,9 +86,16 @@ styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 5,
   },
+  screenBarContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 15,
+    height: 16,
+    width: screenWidth * 0.95,
+  },
   screenBar: {
-    width: 360,
-    marginTop: "6%",
+    width: screenWidth * 0.9,
     ...Platform.select({
       ios: {
         height: 13.5,
@@ -99,7 +114,7 @@ styles = StyleSheet.create({
   },
   midBar: {
     flexDirection: "row",
-    width: 361,
+    width: screenWidth * 0.95,
     height: 50,
     backgroundColor: "#EBF8FF",
     marginTop: "7%",

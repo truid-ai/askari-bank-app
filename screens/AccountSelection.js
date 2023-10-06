@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Platform,
+  Dimensions,
 } from "react-native";
 import { TopComp } from "../components/TopComp";
 import BarImage from "../assets/AccountSelection/screenBar.png";
@@ -17,6 +18,8 @@ import { useState } from "react";
 import AccountFeatures from "../components/AccountFeatures";
 import Button from "../components/Button";
 import { globalStyles } from "../styles/index.js";
+const screenWidth = Dimensions.get("window").width;
+
 const AccountSelection = () => {
   const [selectCheck, setSelectCheck] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
@@ -70,8 +73,8 @@ const AccountSelection = () => {
     },
   ];
   return (
-    <View>
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+    <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+      <View style={{ height: "100%", width: "100%", alignItems: "center" }}>
         <TopComp
           heading={"Account Selection"}
           barImage={BarImage}
@@ -128,8 +131,8 @@ const AccountSelection = () => {
         <View style={globalStyles.btn}>
           <Button Text={"Next"} />
         </View>
-      </ImageBackground>
-    </View>
+      </View>
+    </ImageBackground>
   );
 };
 const styles = StyleSheet.create({
@@ -141,7 +144,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   selectType: {
-    width: 361,
+    width: screenWidth * 0.95,
     height: 49,
     alignItems: "center",
     justifyContent: "space-between",
@@ -151,7 +154,7 @@ const styles = StyleSheet.create({
     borderColor: "#009BDF",
   },
   type: {
-    width: 361,
+    width: screenWidth * 0.95,
     height: 49,
     alignItems: "center",
     justifyContent: "space-between",
@@ -196,6 +199,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     marginBottom: "5%",
+    width: screenWidth * 0.95,
   },
 });
 

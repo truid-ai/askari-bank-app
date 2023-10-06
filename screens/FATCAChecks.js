@@ -1,10 +1,18 @@
-import { ImageBackground, StyleSheet, View, Text } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import { TopComp } from "../components/TopComp";
 import ScreenBar from "../assets/FATCAChecks/screenBar.png";
 import { RadioButton } from "react-native-paper";
 import Button from "../components/Button";
 import { useState } from "react";
 import { globalStyles } from "../styles";
+const screenWidth = Dimensions.get("window").width;
 
 const FATCASchecks = () => {
   const [selectedItemIndexes, setSelectedItemIndexes] = useState({});
@@ -33,7 +41,10 @@ const FATCASchecks = () => {
           barImage={ScreenBar}
           secondHeading={"FATCA Checks"}
         />
-        <View style={styles.checksContainer}>
+        <ScrollView
+          contentContainerStyle={styles.checksContainer}
+          showsVerticalScrollIndicator={false}
+        >
           {questionsArr.map((item, index) => {
             const isSelected = selectedItemIndexes[index];
 
@@ -78,11 +89,10 @@ const FATCASchecks = () => {
                     </Text>
                   </View>
                 </View>
-                <View style={styles.separator} />
               </View>
             );
           })}
-        </View>
+        </ScrollView>
         <View style={globalStyles.btn}>
           <Button Text={"Next"} />
         </View>
@@ -100,15 +110,20 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   question: {
-    width: 234,
     fontWeight: "500",
     fontSize: 16,
     color: "#252A31",
   },
-  checksDiv: { width: 234, height: 57, gap: 9 },
+  checksDiv: {
+    paddingVertical: 9,
+    gap: 9,
+    borderBottomWidth: 1,
+    borderBottomColor: "#BCBCBC",
+  },
   checksContainer: {
-    width: 360,
+    width: screenWidth * 0.95,
     marginTop: 30,
+    paddingBottom: 150,
     gap: 35,
   },
 
@@ -116,11 +131,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 17,
   },
-  separator: {
-    backgroundColor: "#BCBCBC",
-    width: 359,
-    height: 0.7,
-  },
+
   radioButton: {
     flexDirection: "row",
     alignItems: "center",

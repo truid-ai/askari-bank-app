@@ -1,8 +1,9 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import feature1 from "../assets/AccountFeatures/feature1.png";
 import feature2 from "../assets/AccountFeatures/feature2.png";
 import feature3 from "../assets/AccountFeatures/feature3.png";
 import feature4 from "../assets/AccountFeatures/feature4.png";
+const screenWidth = Dimensions.get("window").width;
 
 const AccountFeatures = () => {
   const arr = [
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    width: 360,
+    width: screenWidth * 0.95,
     height: 158,
     borderRadius: 5,
     backgroundColor: "#FFFFFF",
